@@ -1,0 +1,41 @@
+name: tfLogicdeploy
+
+on:
+  push:
+    branches: [ master ]
+env:
+  ARM_CLIENT_ID: eaea9e76-0d16-439b-b3e6-0557cfe461a1
+  ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+  ARM_SUBSCRIPTION_ID: 2ae82a40-7aca-41f7-9f32-f32e1d26394b
+  ARM_TENANT_ID: 4fa982aa-4122-4eed-bb16-a845571fcb74     
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout Repository   
+        uses: actions/checkout@master
+        with:
+          repository: sreenathuser/tf-files
+          token: ${{ secrets.logic_PAT }}
+          path: ./tf-files  
+        
+      - name: Log In To Azure
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform -chdir=./tf-files init
+        
+      - name: Terraform Plan
+        run: terraform -chdir=./tf-files plan 
+
+   #   - name: Terraform Apply
+   #    run:  terraform -chdir=./tf-files apply -auto-approve
