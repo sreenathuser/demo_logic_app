@@ -40,5 +40,5 @@ jobs:
       - name: Terraform Plan
         run: terraform -chdir=./tf-files plan 
 
-   #   - name: Terraform Apply
-   #    run:  terraform -chdir=./tf-files apply -auto-approve
+      - name: Terraform Apply
+        run:  terraform -chdir=./tf-files apply -auto-approve
