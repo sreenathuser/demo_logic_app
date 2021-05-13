@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "workflows_demologicapp_name": {
-            "defaultValue": "demologicapp",
+            "defaultValue": "testlogicapp",
             "type": "String"
         }
     },
@@ -24,7 +24,9 @@
                         "manual": {
                             "type": "Request",
                             "kind": "Http",
-                            "inputs": {}
+                            "inputs": {
+                                "schema": {}
+                            }
                         }
                     },
                     "actions": {
