@@ -63,6 +63,12 @@
                                             "@triggerBody()",
                                             "Hello"
                                         ]
+                                    },
+                                    {
+                                        "contains": [
+                                            "@triggerBody()",
+                                            "world"
+                                        ]
                                     }
                                 ]
                             },
